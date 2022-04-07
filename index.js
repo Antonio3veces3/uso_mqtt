@@ -4,6 +4,7 @@ let mensaje = document.getElementById('mensaje');
 let topic = document.getElementById('topic');
 let btnSend = document.getElementById('send');
 let divMensajes = document.getElementById('mensajes');
+olList = document.querySelector('ol');
 
 btnSend.addEventListener('click', ()=>{
     let mnsj = mensaje.value;
@@ -19,19 +20,16 @@ btnSend.addEventListener('click', ()=>{
 });
 
 function mensajeEvent (topic, message){
-    console.log(topic + " - "+message.toString()); 
-    let showMnsj =`
-    <div class= "txtMensaje">
-    <p>_______________________________</p>
-    <p> <b>Topic: </b> ${topic} dice:</p>
-    <p>${message}</p>
-    </div>
-    `;
-    divMensajes.innerHTML+=showMnsj;
+    const item = document.createElement('li');
+
+    item.innerHTML = `<b>${topic}</b> : ${message}`;
+    item.classList.add('list-group-item');
+
+    olList.append(item);
 }
 
 function reconectar(){
-    console.log('Reconnecting...')
+    console.log('Reconnecting...');
 }
 
 
@@ -39,12 +37,13 @@ client.on('connect', () => {
     console.log('Conectado');
     client.subscribe('carg/#', function (err) {
        if (!err) {
-          client.publish('carg/hola', 'Hello mqtt');
+          //client.publish('carg/hola', 'Hello mqtt');
         }else{
             console.log(err);
         }
     });
 })
+
 client.on('message', mensajeEvent)
 client.on('reconnect', reconectar)
 
