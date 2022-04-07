@@ -1,21 +1,4 @@
-/*#mensajes {
-    max-width: 90%;
-    margin-top: 50px;
-    padding-left: 1em;
+#mensajes {
     height: 28rem;
     overflow: scroll;
-    margin-left: 5%;
 }
-body{
-    width: 600px;
-    margin-left: 30%;
-}
-h1{
-    text-align: center;
-}
-#form{
-    margin-left: 5%;
-}
-p{
-    height: 8px;
-}*/
